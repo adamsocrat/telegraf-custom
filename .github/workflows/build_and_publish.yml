@@ -19,14 +19,15 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Build Docker Image
         run: |
-          docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/telegraf-custom:latest .
+          docker build -t ghcr.io/${{ github.actor }}/telegraf-custom:latest .
 
       - name: Push Docker Image
         run: |
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/telegraf-custom:latest
+          docker push ghcr.io/${{ github.actor }}/telegraf-custom:latest
 
