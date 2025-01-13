@@ -13,9 +13,6 @@ RUN apt update && apt install -y \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get -y install sudo
-
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
 # Modify the sudoers file to allow the telegraf user to run smartctl and nvme without a password
 RUN echo 'Cmnd_Alias SMARTCTL = /usr/sbin/smartctl' >> /etc/sudoers && \
