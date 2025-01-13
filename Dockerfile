@@ -13,6 +13,7 @@ RUN apt update && apt install -y \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
+# Scan smart devices
 CMD ["smartctl --scan"]
 
 # Switch back to the Telegraf user for running the container
