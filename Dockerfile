@@ -10,9 +10,10 @@ RUN apt update && apt install -y \
     lm-sensors \
     nvme-cli \
     ipmitool \
+ && apt-get update \
+ && apt-get install -y sudo \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
-
 
 # Modify the sudoers file to allow the telegraf user to run smartctl and nvme without a password
 RUN echo 'Cmnd_Alias SMARTCTL = /usr/sbin/smartctl' >> /etc/sudoers && \
